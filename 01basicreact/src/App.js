@@ -1,8 +1,12 @@
-
+import Chai from './Chai'
 
 function App() {
   return (
-    <h1>Shorya React Js</h1>
+    <>
+    <Chai />
+
+    </>
+    
   );
 }
 

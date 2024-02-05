@@ -1,9 +1,15 @@
-
+import First from "./first"
 
 function App() {
 
   return (
-    <h1>Shorya Vite React </h1>
+    <>
+    <First/>
+    <h1>hey </h1>
+    <p>helloooooo</p>
+    
+    </>
+    
   )
 }
 
