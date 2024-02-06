@@ -10,14 +10,14 @@ function MyApp(){
   )
 }
 
-const ReactElement={
-  type:'a',
-  props:{
-      href:'https://google.com',
-      target:'_blank'
-  },
-  children:'click me to visit google'
-}
+// const ReactElement={
+//   type:'a',
+//   props:{
+//       href:'https://google.com',
+//       target:'_blank'
+//   },
+//   children:'click me to visit google'
+// }
 
 const AnotherElement=(
   <a href="https://google.com" target='_blank'>Visit Google</a>
@@ -33,6 +33,6 @@ const areactElement=React.createElement(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     //  ReactElement //MyApp() this will also run 
-    <App/>
-    // areactElement
+    // <App/>
+    areactElement//babel does this
 )
