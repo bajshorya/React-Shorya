@@ -1,21 +1,17 @@
-import React from 'react'
-import { useState } from 'react'
-import {useDispatch} from "react-redux"
-import {addTodo} from '../features/todo/todoSlice';
-
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../features/todo/todoSlice";
 
 function AddTodo() {
+  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
 
-    const[input,setInput]=useState('')
-    const dispatch =useDispatch()
-
-    const addTodoHandler=(e)=>{
-        e.preventDefault()
-        dispatch(addTodo(input))
-        setInput(' ')
-    }
-
-
+  const addTodoHandler = (e) => {
+    e.preventDefault();
+    dispatch(addTodo(input)); // Pass the input as the payload
+    setInput("");
+  };
 
   return (
     <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
@@ -33,7 +29,7 @@ function AddTodo() {
         Add Todo
       </button>
     </form>
-  )
+  );
 }
 
-export default AddTodo
+export default AddTodo;
