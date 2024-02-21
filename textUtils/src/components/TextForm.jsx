@@ -38,7 +38,7 @@ function TextForm(props) {
             id="myBox"
             rows="8"
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
               color: props.mode === "dark" ? "white" : "grey", // Add this line
             }}
           ></textarea>
@@ -66,7 +66,13 @@ function TextForm(props) {
           }{" "}
           words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes reading time</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          Minutes reading time
+        </p>
         <h3>Preview</h3>
         <p>
           {text.length > 0
