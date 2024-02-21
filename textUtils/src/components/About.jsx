@@ -1,29 +1,35 @@
 import React from "react";
 import { useState } from "react";
 
-function About() {
-  const [myStyle, setMyStyle] = useState({
-    color: "#042743",
-    backgroundColor: "white",
-  });
-
-  const [btnText, setBtnText] = useState("Enable Dark Mode");
-  const toggleStyle = () => {
-    if (myStyle.color === "#042743") {
-      setMyStyle({
-        color: "white ",
-        backgroundColor: "#042743",
-        border: "1px solid white",
-      });
-      setBtnText("Enable Light Mode");
-    } else {
-      setMyStyle({
-        color: "#042743",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mode");
-    }
+function About(props) {
+  // const [myStyle, setMyStyle] = useState({
+  //   color: "#042743",
+  //   backgroundColor: "white",
+  // });
+  let myStyle = {
+    color: props.mode === "dark" ? "white" : "#042743 ",
+    backgroundColor: props.mode === "dark" ? "#042743" : "white",
+    border: "1px solid",
+    borderColor: props.mode === "dark" ? "white" : "#042743 ",
   };
+
+  // const [btnText, setBtnText] = useState("Enable Dark Mode");
+  // const toggleStyle = () => {
+  //   if (myStyle.color === "#042743") {
+  //     setMyStyle({
+  //       color: "white ",
+  //       backgroundColor: "#042743",
+  //       border: "1px solid white",
+  //     });
+  //     setBtnText("Enable Light Mode");
+  //   } else {
+  //     setMyStyle({
+  //       color: "#042743",
+  //       backgroundColor: "white",
+  //     });
+  //     setBtnText("Enable Dark Mode");
+  //   }
+  // };
   return (
     <div className="container" style={myStyle}>
       <h1 className="my-2">About Us</h1>
@@ -122,7 +128,7 @@ function About() {
           </div>
         </div>
       </div>
-      <div className="container my-3">
+      {/* <div className="container my-3">
         <button
           onClick={toggleStyle}
           type="buttom"
@@ -130,7 +136,7 @@ function About() {
         >
           {btnText}
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
