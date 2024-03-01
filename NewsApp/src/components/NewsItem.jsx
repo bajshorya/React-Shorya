@@ -28,7 +28,7 @@ export default class NewsItem extends Component {
             <p className="card-text">
               <small className="text-muted">
                 By {!author ? "Unknown" : author} on{" "}
-                {new Date(date).toGMTString()}
+                {date ? new Date(date).toGMTString() : "Unknown Date"}
               </small>
             </p>
             <a
