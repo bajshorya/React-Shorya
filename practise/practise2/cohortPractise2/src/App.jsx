@@ -1,0 +1,41 @@
+import { useState, useEffect } from "react";
+import "./App.css";
+
+function App() {
+  const [counter, setCounter] = useState(0);
+  const [inputValue, setInputValue] = useState(1);
+  const [finalValue, setFinalValue] = useState(0);
+  useEffect(() => {
+    let count = 0;
+    for (let i = 0; i <= inputValue; i++) {
+      count += i;
+    }
+    setFinalValue(count);
+  }, [inputValue]);
+
+  return (
+    <>
+      <div>
+        <input
+          onChange={function (e) {
+            setInputValue(e.target.value);
+          }}
+          placeholder="Find Sum from 1-n"
+        />
+        <br />
+        <br />
+        Sum from 1 to {inputValue} is {finalValue}
+        <br />
+        <button
+          onClick={() => {
+            setCounter(counter + 1);
+          }}
+        >
+          Counter ({counter})
+        </button>
+      </div>
+    </>
+  );
+}
+
+export default App;
