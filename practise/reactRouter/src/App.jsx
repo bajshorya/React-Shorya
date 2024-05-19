@@ -1,4 +1,5 @@
-import React from "react"; // Import React
+//suspense api, asynchronus component/data fetching
+import React, { Suspense } from "react"; // Import React
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import HomeScreen from "./components/HomeScreen";
@@ -12,8 +13,22 @@ function App() {
           <Appbar />
 
           <Routes>
-            <Route path="/" element={<HomeScreen />} />
-            <Route path="/dash" element={<Dashboard />} />
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={"loading..."}>
+                  <HomeScreen />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/dash"
+              element={
+                <Suspense fallback={"loading..."}>
+                  <Dashboard />
+                </Suspense>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </div>
