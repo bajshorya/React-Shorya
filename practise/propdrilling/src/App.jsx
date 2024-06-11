@@ -1,26 +1,26 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CountContext } from "./Context";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { countAtom } from "./store/atoms/count";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <div>
-        <CountContext.Provider value={count}>
-          <Count setCount={setCount} />
-        </CountContext.Provider>
+        <RecoilRoot>
+          <Count />
+        </RecoilRoot>
       </div>
     </>
   );
 }
 
-function Count({ setCount }) {
+function Count() {
   console.log("rerender");
   return (
     <div>
       <CountRenderer />
-      <Buttons setCount={setCount} />
+      <Buttons />
     </div>
   );
 }
@@ -29,12 +29,17 @@ function Count({ setCount }) {
 // state managemnet and recoil
 // context api just maked the code more cleaner (only fix prop drilling )
 
+// recoil gives us three hooks
+//useRecoilState = set and gets both
+//useRecoilValue = gets the value
+//useSetRecoilValue = sets the value
+
 function CountRenderer() {
-  const count = useContext(CountContext);
+  const count = useRecoilValue(countAtom); //just needs the value it doesn't require to update it so we can use useRecoilValue
   return <div>{count}</div>;
 }
-function Buttons({ setCount }) {
-  const count = useContext(CountContext);
+function Buttons() {
+  const [count, setCount] = useRecoilState(countAtom);
   return (
     <>
       <button onClick={() => setCount(count + 1)}>Increase</button>
