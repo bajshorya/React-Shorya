@@ -1,7 +1,12 @@
 import { useContext } from "react";
 import { CountContext } from "./Context";
-import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
-import { countAtom } from "./store/atoms/count";
+import {
+  RecoilRoot,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
+import { countAtom, evenSelector } from "./store/atoms/count";
 
 function App() {
   return (
@@ -35,15 +40,39 @@ function Count() {
 //useSetRecoilValue = sets the value
 
 function CountRenderer() {
-  const count = useRecoilValue(countAtom); //just needs the value it doesn't require to update it so we can use useRecoilValue
-  return <div>{count}</div>;
+  const count = useRecoilValue(countAtom);
+  //just needs the value it doesn't require to update it so we can use useRecoilValue
+  return (
+    <div>
+      {count}
+      <b>
+        <EvenCountRenderer />
+      </b>
+    </div>
+  );
 }
+
+//selector
+function EvenCountRenderer() {
+  const isEven = useRecoilValue(evenSelector);
+  return <div>{isEven ? "It is Even" : null}</div>;
+}
+
+//setCount=(count+1);
+// setCount(c=>c+1);
+// setCount(function(c){
+// return c+1;
+// })
 function Buttons() {
-  const [count, setCount] = useRecoilState(countAtom);
+  // const [count, setCount] = useRecoilState(countAtom);
+  const setCount = useSetRecoilState(countAtom);
+  console.log("buttons re render ");
+
   return (
     <>
-      <button onClick={() => setCount(count + 1)}>Increase</button>
-      <button onClick={() => setCount(count - 1)}>Decrease</button>
+      {/* this makes this as performant as its get  */}
+      <button onClick={() => setCount((count) => count + 1)}>Increase</button>
+      <button onClick={() => setCount((count) => count - 1)}>Decrease</button>
     </>
   );
 }
