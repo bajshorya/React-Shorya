@@ -7,7 +7,12 @@ import {
 } from "recoil";
 
 import "./App.css";
-import { networkAtom } from "./store/atoms/title";
+import {
+  jobsAtom,
+  messagingAtom,
+  networkAtom,
+  notificationsAtom,
+} from "./store/atoms/title";
 
 function App() {
   return (
@@ -19,6 +24,9 @@ function App() {
 
 function MainApp() {
   const networkNotificationCount = useRecoilValue(networkAtom);
+  const notificationsAtomCount = useRecoilValue(notificationsAtom);
+  const jobsAtomCount = useRecoilValue(jobsAtom);
+  const messagingAtomCount = useRecoilValue(messagingAtom);
   return (
     <>
       <>
@@ -29,16 +37,27 @@ function MainApp() {
             {networkNotificationCount >= 100 ? "99+" : networkNotificationCount}
             )
           </button>
-          <button>Jobs ()</button>
-          <button>Messaging ()</button>
-          <button>Notifications ()</button>
-          <button>Me</button>
+          <button>Jobs ({jobsAtomCount})</button>
+          <button>Messaging ({messagingAtomCount})</button>
+          <button>Notifications ({notificationsAtomCount})</button>
+          <ButtonUpdater />
         </div>
       </>
     </>
   );
 }
-
+function ButtonUpdater() {
+  const setMessagingAtomCount = useSetRecoilState(messagingAtom);
+  return (
+    <button
+      onClick={() => {
+        setMessagingAtomCount((c) => c + 1);
+      }}
+    >
+      Me
+    </button>
+  );
+}
 function Todo() {
   const [title, setTitle] = useState("");
   return (
